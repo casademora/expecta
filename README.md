@@ -40,7 +40,7 @@ target :MyApp do
 end
 
 target :MyAppTests do
-  pod 'Expecta',     '~> 0.2.2'   # expecta matchers
+  pod 'Expecta',     '~> 0.2.3'   # expecta matchers
   # pod 'Specta',      '~> 0.1.11'  # specta bdd framework
 end
 ```
@@ -79,6 +79,8 @@ Expecta is framework-agnostic. It works well with OCUnit (SenTestingKit) and OCU
 >
 >`expect(x).to.contain(y);` passes if an instance of NSArray or NSString x contains y.
 >
+>`expect(x).to.beSupersetOf(y);` passes if an instance of NSArray, NSSet, NSDictionary or NSOrderedSet x contains all elements of y.
+>
 >`expect(x).to.haveCountOf(y);` passes if an instance of NSArray, NSSet, NSDictionary or NSString x has a count or length of y.
 >
 >`expect(x).to.beEmpty();` passes if an instance of NSArray, NSSet, NSDictionary or NSString x has a count or length of 0.
@@ -106,6 +108,10 @@ Expecta is framework-agnostic. It works well with OCUnit (SenTestingKit) and OCU
 >`expect(^{ /* code */ }).to.raise(@"ExceptionName");` passes if a given block of code raises an exception named `ExceptionName`.
 >
 >`expect(^{ /* code */ }).to.raiseAny();` passes if a given block of code raises any exception.
+>
+>`expect(x).to.conformTo(y);` passes if `x` conforms to the protocol `y`.
+>
+>`expect(x).to.respondTo(y);` passes if `x` responds to the selector `y`.
 
 **Please contribute more matchers.**
 

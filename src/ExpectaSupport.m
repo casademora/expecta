@@ -13,6 +13,13 @@
 
 @end
 
+@interface NSObject (ExpectaXCTestRecordFailure)
+
+// suppress warning
+- (void)recordFailureWithDescription:(NSString *)description inFile:(NSString *)filename atLine:(NSUInteger)lineNumber expected:(BOOL)expected;
+
+@end
+
 id _EXPObjectify(const char *type, ...) {
   va_list v;
   va_start(v, type);
@@ -111,6 +118,11 @@ void EXPFail(id testCase, int lineNumber, const char *fileName, NSString *messag
       exception = [NSException failureInFile:[NSString stringWithUTF8String:fileName] atLine:lineNumber withDescription:message];
     }
     [testCase failWithException:exception];
+  } else if(testCase && [testCase respondsToSelector:@selector(recordFailureWithDescription:inFile:atLine:expected:)]){
+      [testCase recordFailureWithDescription:message
+                                      inFile:[NSString stringWithUTF8String:fileName]
+                                      atLine:lineNumber
+                                    expected:NO];
   } else {
     [exception raise];
   }

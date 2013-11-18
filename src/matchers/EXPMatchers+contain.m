@@ -13,12 +13,12 @@ EXPMatcherImplementationBegin(_contain, (id expected)) {
       if([actual isKindOfClass:[NSString class]]) {
         return [(NSString *)actual rangeOfString:[expected description]].location != NSNotFound;
       } else {
-		for (id object in actual) {
+        for (id object in actual) {
           if ([object isEqual:expected]) {
             return YES;
           }
-		}
-	  }
+        }
+      }
     }
     return NO;
   });
